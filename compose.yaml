@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+
+  frontend:
+    container_name: frontend
+    build:
+      context: public
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_BACKEND_URL=http://192.168.0.104:5000
+
+  backend:
+    container_name: backend
+    build:
+      context: server
+    ports:
+      - "5000:5000"
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=mongo
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
